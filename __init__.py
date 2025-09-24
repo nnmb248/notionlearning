@@ -8,7 +8,7 @@ with open("g:내 드라이브/2025/공업일반/1인1프_2학기/직탐공일/co
     data = json.load(f)
 
 class StudyApp:
-    def __init__(self, root):
+    def __init__(self, root): 
         self.root = root
         self.root.title("개념 학습 프로그램")
         self.root.geometry("1280x800")
