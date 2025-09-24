@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>퀴즈: {{ subject }}</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f0f4f8; /* 연한 밝은 배경 */
+    color: #000;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background-color: #ffffff; /* 카드 배경 */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* 연한 그림자 */
+}
+
+header {
+    text-align: center;
+    font-size: 1.6em;
+    margin-bottom: 20px;
+}
+
+.progress {
+    position: relative;
+    width: 100%;
+    height: 25px;
+    background-color: #e6e6e6; /* 밝은 회색 바탕 */
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: #a0d8f1; /* 밝은 하늘색 */
+    width: 0%;
+    border-radius: 5px 0 0 5px;
+    transition: width 0.5s ease-in-out;
+}
+
+.progress-bar-text,
+.progress-bar-text-above {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    line-height: 25px;
+    font-weight: bold;
+    color: #000;
+    pointer-events: none;
+}
+
+.progress-bar-text-above {
+    z-index: 2;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.nav-buttons form {
+    margin: 0;
+}
+
+.nav-buttons button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+}
+
+.prev-btn {
+    background-color: #f8c291; /* 연한 오렌지 */
+    color: #000;
+}
+
+.next-btn {
+    background-color: #82e0aa; /* 연한 초록 */
+    color: #000;
+}
+
+.prev-btn:hover, .next-btn:hover {
+    opacity: 0.85;
+}
+
+button:focus { outline: none; }
+
+p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+
+<header>{{ subject }} 퀴즈</header>
+
+<div class="container">
+
+    <h3>문제 {{ index+1 }} / {{ total }}</h3>
+
+    <!-- Progress Bar -->
+    <div class="progress">
+        <div class="progress-bar-fill" id="progressBar"></div>
+        <div class="progress-bar-text">{{ index+1 }}/{{ total }}</div>
+        <div class="progress-bar-text-above">{{ index+1 }}/{{ total }}</div>
+    </div>
+
+    <p><b>{{ concept }}</b></p>
+
+    <div class="nav-buttons">
+        {% if index > 0 %}
+        <form method="post" action="{{ url_for('previous') }}">
+            <input type="hidden" name="index" value="{{ index }}">
+            <input type="hidden" name="subject" value="{{ subject }}">
+            <button type="submit" class="prev-btn">이전</button>
+        </form>
+        {% endif %}
+
+        <form method="post" action="{{ url_for('answer') }}">
+            <input type="hidden" name="index" value="{{ index }}">
+            <input type="hidden" name="subject" value="{{ subject }}">
+            <button type="submit" name="choice" value="{{ concept }}" class="next-btn">다음</button>
+        </form>
+    </div>
+
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const progressBar = document.getElementById('progressBar');
+    const prevPercent = {{ prevPercent }};
+    const currentPercent = {{ currentPercent }};
+
+    // 이전 위치부터 시작
+    progressBar.style.width = prevPercent + '%';
+
+    // 자연스러운 애니메이션 적용
+    setTimeout(() => {
+        progressBar.style.width = currentPercent + '%';
+    }, 50);
+});
+</script>
+
+</body>
+</html>

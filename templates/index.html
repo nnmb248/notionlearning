@@ -1,31 +1,67 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>개념 학습 웹</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        h2 { color: #2c3e50; }
-        .unit { margin-bottom: 20px; }
-        .concept { margin-left: 20px; color: #34495e; }
-    </style>
+<meta charset="UTF-8">
+<title>대단원 선택</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8; /* 밝은 배경 */
+    color: #000;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background-color: #ffffff; /* 카드 배경 */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.subject-list {
+    list-style: none;
+    padding: 0;
+}
+
+.subject-list li {
+    margin-bottom: 10px;
+}
+
+.subject-list a {
+    display: block;
+    padding: 12px;
+    background-color: #a0d8f1; /* 밝은 하늘색 */
+    color: #000;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s;
+    font-weight: bold;
+    text-align: center;
+}
+
+.subject-list a:hover {
+    background-color: #82cfea;
+}
+</style>
 </head>
 <body>
-    <h1>📘 대단원별 개념 학습</h1>
-    {% for subject, units in data.items() %}
-        <div class="subject">
-            <h2>{{ subject }}</h2>
-            {% for unit, concepts in units.items() %}
-                <div class="unit">
-                    <h3>{{ unit }}</h3>
-                    <ul>
-                        {% for name, content in concepts.items() %}
-                            <li class="concept"><b>{{ name }}</b>: {{ content }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endfor %}
-        </div>
-    {% endfor %}
+
+<div class="container">
+    <h1>대단원 선택</h1>
+    <ul class="subject-list">
+        {% for subject in data.keys() %}
+        <li><a href="{{ url_for('quiz', subject=subject) }}">{{ subject }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
 </body>
 </html>

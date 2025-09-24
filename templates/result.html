@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>퀴즈 결과</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #000;
+    padding: 20px;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+header {
+    text-align: center;
+    font-size: 1.6em;
+    margin-bottom: 20px;
+}
+
+.result-item {
+    background-color: #e6f2f8;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.result-item p {
+    margin: 5px 0;
+}
+
+.back-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 25px;
+    background-color: #82e0aa;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    opacity: 0.85;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <header>퀴즈 결과</header>
+
+    {% for item in result %}
+    <div class="result-item">
+        <p><b>{{ loop.index }}. 개념:</b> {{ item.concept }}</p>
+        <p><b>설명:</b> {{ item.explanation }}</p>
+    </div>
+    {% endfor %}
+
+    <a href="{{ url_for('index') }}" class="back-btn">처음으로 돌아가기</a>
+</div>
+
+</body>
+</html>

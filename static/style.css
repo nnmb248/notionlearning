@@ -1,0 +1,86 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f6fa;
+    color: #2f3640;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #40739e;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 20px 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+h1, h2, h3 {
+    margin-bottom: 20px;
+    color: #2f3640;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+a, button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px 0;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.2s;
+}
+
+a {
+    background-color: #40739e;
+    color: #fff;
+}
+
+a:hover, button:hover {
+    opacity: 0.9;
+}
+
+button {
+    background-color: #44bd32;
+    color: #fff;
+}
+
+.progress {
+    width: 100%;
+    background-color: #dcdde1;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    height: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #40739e;
+    width: 0%;
+    transition: width 0.3s;
+    text-align: center;
+    color: #fff;
+    line-height: 20px;
+    font-size: 0.9em;
+}
