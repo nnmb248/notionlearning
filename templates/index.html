@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>개념 학습 웹</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h2 { color: #2c3e50; }
+        .unit { margin-bottom: 20px; }
+        .concept { margin-left: 20px; color: #34495e; }
+    </style>
+</head>
+<body>
+    <h1>📘 대단원별 개념 학습</h1>
+    {% for subject, units in data.items() %}
+        <div class="subject">
+            <h2>{{ subject }}</h2>
+            {% for unit, concepts in units.items() %}
+                <div class="unit">
+                    <h3>{{ unit }}</h3>
+                    <ul>
+                        {% for name, content in concepts.items() %}
+                            <li class="concept"><b>{{ name }}</b>: {{ content }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</body>
+</html>
